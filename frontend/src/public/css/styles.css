@@ -1,12 +1,50 @@
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #E2F3FB;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
     margin: 0;
+    padding: 0;
     background: url('/img/bg.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the content below header */
+    min-height: 100vh; /* Ensures the page covers full height */
+}
+
+.main-header {
+    width: 100vw; /* Ensures it spans the full viewport width */
+    height: 60px;
+    background-color: #027AA8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; /* Ensures it extends to the right edge */
+    z-index: 1000;
+    box-sizing: border-box; /* Prevents content overflow */
+    overflow: hidden; /* Ensures no extra space */
+}
+
+.logo img {
+    height: 50px;
+    padding-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
 }
 
 .container {
@@ -16,7 +54,12 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 400px;
     text-align: center;
+    position: absolute; /* Positioning fix */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers it perfectly */
 }
+
 
 h2 {
     margin-bottom: 20px;
