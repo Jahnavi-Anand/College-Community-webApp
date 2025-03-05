@@ -55,7 +55,7 @@ nav ul li a {
     width: 400px;
     text-align: center;
     position: absolute; /* Positioning fix */
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%); /* Centers it perfectly */
 }
