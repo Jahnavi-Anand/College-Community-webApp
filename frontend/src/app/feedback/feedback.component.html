@@ -1,0 +1,24 @@
+<div class="feedback-container">
+    <h2>Feedback Form</h2>
+    
+    <label for="category">Select Facility Type:</label>
+    <select [(ngModel)]="selectedCategory">
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+  
+    <label for="facility">Select Facility:</label>
+    <select [(ngModel)]="selectedFacility" [disabled]="!selectedCategory">
+      <option *ngFor="let facility of facilities[selectedCategory]" [value]="facility">
+        {{ facility }}
+      </option>
+    </select>
+  
+    <label for="rating">Rating (1-5):</label>
+    <input type="number" [(ngModel)]="rating" min="1" max="5">
+  
+    <label for="review">Your Review:</label>
+    <textarea [(ngModel)]="review" rows="4"></textarea>
+  
+    <button (click)="submitFeedback()">Submit Feedback</button>
+  </div>
+  
