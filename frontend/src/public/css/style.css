@@ -1,0 +1,194 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #E2F3FB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Solid Color Header */
+.main-header {
+    width: 100%;
+    height: 60px;
+    background-color: #027AA8;
+}
+
+/* Blurred Image Section */
+.feedback-banner {
+    width: 100%;
+    height: 200px;
+    background: url('/img/bg.jpg') no-repeat center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Overlay for Blur Effect */
+.feedback-banner .overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    backdrop-filter: blur(5px);
+}
+
+/* Banner Text */
+.feedback-banner h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.feedback-banner p {
+    font-size: 1.2rem;
+    margin-top: 5px;
+}
+
+/* Feedback Form Container */
+.feedback-container {
+    width: 50%;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+    padding-bottom: 25px;
+}
+.overlay span{
+    color: rgb(68, 202, 255);
+}
+/* Form Inputs */
+label {
+    display: block;
+    text-align: left;
+    margin-top: 10px;
+}
+
+select, input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    outline: none;
+}
+
+/* Adjustments for Textarea */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Submit Button */
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #027AA8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #015f85;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .feedback-container {
+        width: 80%;
+        padding: 15px;
+    }
+
+    .feedback-banner h1 {
+        font-size: 2rem;
+    }
+
+    .feedback-banner p {
+        font-size: 1rem;
+    }
+}
+
+.footer {
+    background-color: #027AA8;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    position: relative;
+    margin-top: auto;
+}
+
+.footer-content {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.middle p, .middle a {
+    margin: 5px 0;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.middle a:hover {
+    text-decoration: underline;
+}
+
+.footer-line {
+    width: 80%;
+    margin: 15px auto;
+    border: 0.5px solid white;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.icon-circle:hover {
+    transform: scale(1.1);
+    background-color: #fff5;
+}
+
+.icon-circle i {
+    color: #027AA8;
+    font-size: 20px;
+}
+
+/* Responsive Footer */
+@media screen and (max-width: 768px) {
+    .social-icons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}

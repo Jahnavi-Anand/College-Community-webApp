@@ -23,6 +23,10 @@ app.get("/login", (req, res) => {
     res.render("login-signup");
 });
 
+app.get("/feedback", (req, res) => {
+    res.render("feedback");
+});
+
 // Start server
 const PORT = 4000;  
 app.listen(PORT, () => {

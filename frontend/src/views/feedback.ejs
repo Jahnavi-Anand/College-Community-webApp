@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/4c5acf577d.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- Solid Color Header -->
+    <header class="main-header"></header>
+
+    <!-- Blurred Image Section -->
+    <div class="feedback-banner">
+        <div class="overlay">
+            <h1>Real <span> Reviews,<br>Real </span> Experiences</h1>
+            <p>Honest feedback from you, for you!</p>
+        </div>
+    </div>
+
+    <!-- Feedback Form -->
+    <div class="feedback-container">
+        <h2>Feedback</h2>
+        
+        <form action="/submit-feedback" method="POST">
+            <label for="category">Select Facility Section:</label>
+            <select id="category" name="category" onchange="updateFacilities()" required>
+                <option value="">-- Select Section --</option>
+                <option value="cafes">Cafes</option>
+                <option value="hostels">Hostels</option>
+                <option value="doctors">Doctors</option>
+                <option value="deli">Deli Shops</option>
+                <option value="cabs">Cab Services</option>
+            </select>
+
+            <label for="facility">Select Facility:</label>
+            <select id="facility" name="facility" required>
+                <option value="">-- Select Facility --</option>
+            </select>
+
+            <label for="rating">Rating (1-5):</label>
+            <input type="number" id="rating" name="rating" min="1" max="5" required>
+
+            <label for="review">Your Experience:</label>
+            <textarea id="review" name="review" rows="4" placeholder="Write your review here..." required></textarea>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </div>
+
+    <br> <br>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="middle">
+                <p>Made in Response to Minor Project 2</p>
+                <a href="https://github.com/Jahnavi-Anand/College-Community-webApp.git" target="_blank">Click to View GitHub Repository</a>
+            </div>
+            <hr class="footer-line" />
+            <div class="social-icons">
+                <a href="https://www.instagram.com/upes_dehradun/" target="_blank" class="icon-circle">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/UPESddnuk" target="_blank" class="icon-circle">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="https://www.youtube.com/user/UPESUniversity/featured" target="_blank" class="icon-circle">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="https://www.linkedin.com/school/upesdehradun/posts/?feedView=all" target="_blank" class="icon-circle">
+                    <i class="fa-brands fa-linkedin-in"></i>
+                </a>
+                <a href="https://x.com/UPESDehradun" target="_blank" class="icon-circle">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="https://www.upes.ac.in/" target="_blank" class="icon-circle">
+                    <i class="fa-solid fa-link"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/feedback.js"></script>
+</body>
+</html>
