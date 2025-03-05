@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login/Signup</title>
-    <link rel="stylesheet" href="/styles.css">
+    <title>Login/Signup SPA</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <div class="container">
-        <!-- Common Login Form -->
+        <!-- LOGIN FORM -->
         <div id="login-form">
             <h2>LOGIN</h2>
             <form action="/login" method="POST">
@@ -22,44 +22,15 @@
                 </div>
                 <button type="submit">Login</button>
             </form>
-            <div class="toggle-form" onclick="showSignupOptions()">Don't have an account? Sign up</div>
+            <div class="toggle-form" onclick="showSignup()">Don't have an account? Sign up</div>
         </div>
 
-        <!-- Signup Options -->
-        <div id="signup-options" style="display: none;">
-            <h2>CHOOSE SIGNUP OPTION</h2>
-            <button onclick="showAdminSignup()">Club Admin Signup</button>
-            <button onclick="showUserSignup()">User Signup</button>
-            <div class="toggle-form" onclick="showLogin()">Already have an account? Login</div>
-        </div>
-
-        <!-- Club Admin Signup Form -->
-        <div id="admin-signup" style="display: none;">
-            <h2>CLUB ADMIN SIGNUP</h2>
-            <form action="/admin-signup" method="POST">
+        <!-- SIGNUP FORM -->
+        <div id="signup-form" style="display: none;">
+            <h2>SIGNUP</h2>
+            <form action="/signup" method="POST">
                 <div class="form-group">
-                    <label for="club-name">Club Name</label>
-                    <input type="text" name="clubName" placeholder="Enter your club name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" placeholder="Enter your email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" placeholder="Enter your password" required>
-                </div>
-                <button type="submit">Sign Up</button>
-            </form>
-            <div class="toggle-form" onclick="showSignupOptions()">Back to Signup Options</div>
-        </div>
-
-        <!-- User Signup Form -->
-        <div id="user-signup" style="display: none;">
-            <h2>USER SIGNUP</h2>
-            <form action="/user-signup" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Full Name</label>
                     <input type="text" name="name" placeholder="Enter your full name" required>
                 </div>
                 <div class="form-group">
@@ -74,12 +45,17 @@
                     <label for="password">Password</label>
                     <input type="password" name="password" placeholder="Enter your password" required>
                 </div>
+                <div class="form-group">
+                    <label for="password">Re-enter Password</label>
+                    <input type="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <p id="error-message" style="color: red; display: none;">Passwords do not match!</p>
                 <button type="submit">Sign Up</button>
             </form>
-            <div class="toggle-form" onclick="showSignupOptions()">Back to Signup Options</div>
+            <div class="toggle-form" onclick="showLogin()">Already have an account? Login</div>
         </div>
     </div>
 
-    <script src="/scripts.js"></script>
+    <script src="/js/scripts.js"></script>
 </body>
 </html>

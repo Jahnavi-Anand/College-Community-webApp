@@ -1,58 +1,55 @@
 body {
-    font-family: Arial, sans-serif;
-    background: url('/images/bg.jpg') no-repeat center center/cover;
+    font-family: 'Poppins', sans-serif;
+    background-color: #E2F3FB;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    background: url('/img/bg.jpg') no-repeat center center/cover;
 }
 
 .container {
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.8);  
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    width: 350px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
     text-align: center;
 }
 
-.tabs {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
+h2 {
+    margin-bottom: 20px;
 }
 
-.tab {
-    width: 50%;
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group select {
+    width: calc(100% - 20px);
     padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    background: #ddd;
-    border-radius: 5px 5px 0 0;
-}
-
-.tab.active {
-    background: #007bff;
-    color: white;
-}
-
-form {
-    display: none;
-}
-
-input {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
+    margin: 0 auto;
     border: 1px solid #ccc;
     border-radius: 5px;
+    display: block;
+    box-sizing: border-box;
 }
 
 button {
     width: 100%;
     padding: 10px;
-    background: #007bff;
+    background-color: #027AA8;
     color: white;
     border: none;
     border-radius: 5px;
@@ -60,5 +57,16 @@ button {
 }
 
 button:hover {
-    background: #0056b3;
+    background-color: #015f85;
+}
+
+.toggle-form {
+    cursor: pointer;
+    color: #027AA8;
+    margin-top: 15px;
+    text-decoration: underline;
+}
+
+.toggle-form:hover {
+    color: #004d6c;
 }

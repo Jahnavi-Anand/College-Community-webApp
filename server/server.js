@@ -2,20 +2,29 @@ const express = require("express");
 const app = express();
 const path = require("path");
 
+// Middleware to parse JSON & URL-encoded data
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Set EJS as the template engine
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "src/views"));
+app.set("views", path.join(__dirname, "../frontend/src/views"));  
 
 // Serve static files (CSS, JS, Images)
-app.use(express.static(path.join(__dirname, "src/public")));
+app.use(express.static(path.join(__dirname, "../frontend/src/public")));  
+
+// Root route → Redirects to login page
+app.get("/", (req, res) => {
+    res.redirect("/login");
+});
 
 // Route for login/signup page
 app.get("/login", (req, res) => {
-    res.render("login_signup");
+    res.render("login-signup");
 });
 
 // Start server
-const PORT = 4000;  // Change from 3000 to 4000
+const PORT = 4000;  
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}/login`);
+    console.log(`🚀 Server running at http://localhost:${PORT}/login`);
 });
