@@ -1,0 +1,6 @@
+projectKey=College-Community-Webapp
+serverUrl=http://localhost:9000
+serverVersion=25.2.0.102705
+dashboardUrl=http://localhost:9000/dashboard?id=College-Community-Webapp
+ceTaskId=ec91aeea-8905-4241-b33c-cf5655b2989a
+ceTaskUrl=http://localhost:9000/api/ce/task?id=ec91aeea-8905-4241-b33c-cf5655b2989a
