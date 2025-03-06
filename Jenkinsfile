@@ -7,7 +7,8 @@ pipeline {
     }
 
     stages {
-        steps {
+        stage('Checkout Code') {   
+            steps {
                 script {
                     deleteDir() // Ensure clean workspace
                     checkout([$class: 'GitSCM', branches: [[name: '*/main']], 
@@ -15,10 +16,10 @@ pipeline {
                             url: 'https://github.com/Jahnavi-Anand/College-Community-webApp.git',
                             credentialsId: 'your-git-credential-id'
                         ]], 
-                        extensions: [[$class: 'WipeWorkspace']]]
-                    )
+                        extensions: [[$class: 'WipeWorkspace']]])
                 }
             }
+        }
 
         stage('Install Dependencies') {
             steps {
