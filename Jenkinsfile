@@ -7,11 +7,18 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Code') {
-            steps {
-                git 'https://github.com/Jahnavi-Anand/College-Community-webApp.git'
+        steps {
+                script {
+                    deleteDir() // Ensure clean workspace
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], 
+                        userRemoteConfigs: [[
+                            url: 'https://github.com/Jahnavi-Anand/College-Community-webApp.git',
+                            credentialsId: 'your-git-credential-id'
+                        ]], 
+                        extensions: [[$class: 'WipeWorkspace']]]
+                    )
+                }
             }
-        }
 
         stage('Install Dependencies') {
             steps {
