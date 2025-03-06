@@ -52,7 +52,7 @@ pipeline {
 }
 
 
-        stage('Build Frontend') {
+        /*stage('Build Frontend') {
             steps {
                 script {
                     dir('frontend') {
@@ -70,6 +70,6 @@ pipeline {
                     }
                 }
             }
-        }
+        }*/
     }
 }

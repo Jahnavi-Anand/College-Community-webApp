@@ -4,11 +4,11 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 
-const routes: Routes = [
+export const routes: Routes = [ // <-- Add export here
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'feedback', component: FeedbackComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' } // Default to login
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
