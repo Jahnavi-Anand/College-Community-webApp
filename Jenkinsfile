@@ -38,18 +38,19 @@ pipeline {
         }
 
         stage('Run SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat '''
-                    sonar-scanner \
-                    -D"sonar.projectKey=College-Community-Webapp" \
-                    -D"sonar.sources=frontend/src" \
-                    -D"sonar.host.url=$SONARQUBE_URL" \
-                    -D"sonar.token=$SONAR_TOKEN"
-                    '''
-                }
-            }
+    steps {
+        withSonarQubeEnv('SonarQube') {
+            bat '''
+            C:\\sonar-scanner-5.0.1.3006-windows\\bin\\sonar-scanner ^
+            -D"sonar.projectKey=College-Community-Webapp" ^
+            -D"sonar.sources=frontend/src" ^
+            -D"sonar.host.url=%SONARQUBE_URL%" ^
+            -D"sonar.token=%SONAR_TOKEN%"
+            '''
         }
+    }
+}
+
 
         stage('Build Frontend') {
             steps {
