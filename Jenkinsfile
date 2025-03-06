@@ -26,12 +26,12 @@ pipeline {
                 script {
                     // Install frontend dependencies
                     dir('frontend') {
-                        sh 'npm install'
+                        bat 'npm install'
                     }
 
                     // Install backend dependencies
                     dir('server') {
-                        sh 'npm install'
+                        bat 'npm install'
                     }
                 }
             }
@@ -40,7 +40,7 @@ pipeline {
         stage('Run SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh '''
+                    bat '''
                     sonar-scanner \
                     -D"sonar.projectKey=College-Community-Webapp" \
                     -D"sonar.sources=frontend/src" \
@@ -55,7 +55,7 @@ pipeline {
             steps {
                 script {
                     dir('frontend') {
-                        sh 'npm run build' // Adjust if needed
+                        bat 'npm run build' // Adjust if needed
                     }
                 }
             }
@@ -65,7 +65,7 @@ pipeline {
             steps {
                 script {
                     dir('server') {
-                        sh 'node server.js &'
+                        bat 'node server.js &'
                     }
                 }
             }
