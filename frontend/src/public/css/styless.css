@@ -1,0 +1,196 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Prevents padding from increasing element size */
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #E2F3FB;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    min-height: 100vh; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+        .main-header {
+            width: 100vw; /* Ensures it spans the full viewport width */
+            height: 60px;
+            background-color: #027AA8;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0; /* Ensures it extends to the right edge */
+            z-index: 1000;
+            box-sizing: border-box; /* Prevents content overflow */
+            overflow: hidden; /* Ensures no extra space */
+        }
+        
+        .logo img {
+            height: 50px;
+            padding-left: 20px;
+        }
+        
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .container { 
+            display: flex; 
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 100px; 
+            margin-bottom: 20px;
+        }
+
+        .sidebar {
+            width: 250px; 
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+
+        .sidebar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .sidebar h2, .sidebar p {
+            text-align: center;
+            margin: 5px 0;
+        }
+
+        .sidebar button {
+            padding: 10px 15px;
+            background-color: #027AA8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .sidebar button:hover{
+            background-color: #015f85;
+        }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #fff;
+        }
+
+        .review-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .review-item {
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .review-item h3 {
+            margin-top: 0;
+        }
+
+        .footer {
+            background-color: #027AA8;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            position: relative;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+        }
+        
+        .middle p, .middle a {
+            margin: 5px 0;
+            color: white;
+            font-size: 16px;
+            text-decoration: none;
+        }
+        
+        .middle a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer-line {
+            width: 80%;
+            margin: 15px auto;
+            border: 0.5px solid white;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        
+        .icon-circle:hover {
+            transform: scale(1.1);
+            background-color: #fff5;
+        }
+        
+        .icon-circle i {
+            color: #027AA8;
+            font-size: 20px;
+        }
+        
+        /* Responsive Footer */
+        @media screen and (max-width: 768px) {
+            .social-icons {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }

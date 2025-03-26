@@ -27,6 +27,10 @@ app.get("/feedback", (req, res) => {
     res.render("feedback");
 });
 
+app.get("/user", (req, res) => {
+    res.render("user_dashboard");
+});
+
 // Start server
 const PORT = 4000;  
 app.listen(PORT, () => {
