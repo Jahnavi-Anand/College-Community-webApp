@@ -1,68 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Feedback Page</title>
-        <link rel="stylesheet" href="/css/service.css">
-        <script src="https://kit.fontawesome.com/4c5acf577d.js" crossorigin="anonymous"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Page</title>
+    <link rel="stylesheet" href="/css/service.css">
+    <script src="https://kit.fontawesome.com/4c5acf577d.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+</head>
 <body>
 
-    <header class="main-header">
-        <div class="logo">
-            <img src="/img/logo.avif" alt="Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="/home">Home</a></li>
-                <li><a href="/service">Service</a></li>
-                <li><a href="/user">UDashboard</a></li>
-                <li><a href="/admin">ADashboard</a></li>
-                <li><a href="/feedback">Review</a></li>
-                <li><a href="/login">Login</a></li>
-
-            </ul>
-        </nav>        
+<header class="main-header">
+    <nav>
+        <ul>
+            <li><a href="/home">Home</a></li>
+            <li><a href="/service">Service</a></li>
+            <li><a href="/user">UDashboard</a></li>
+            <li><a href="/admin">ADashboard</a></li>
+            <li><a href="/feedback">Review</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
 </header>
 
-    <!-- Blurred Image Section -->
-    <div class="feedback-banner">
-        <div class="overlay">
-            <h1>Real <span> Reviews,<br>Real </span> Experiences</h1>
-            <p>Honest feedback from you, for you!</p>
+<div class="feedback-banner">
+    <div class="overlay">
+        <h1>Real <span> Reviews,<br>Real </span> Experiences</h1>
+        <p>Honest feedback from you, for you!</p>
+    </div>
+</div>
+
+<div class="tabs-container">
+    <div class="tab active" data-tab="hostels">Hostels</div>
+    <div class="tab" data-tab="cabs">Cabs</div>
+    <div class="tab" data-tab="doctors">Doctors</div>
+    <div class="tab" data-tab="cafes">Cafes</div>
+    <div class="tab" data-tab="deli">Deli</div>
+</div>
+
+<div class="tab-content" id="hostels-content">
+    <div class="event-filters">
+        <input type="text" id="search-bar-hostels" placeholder="Search hostels..." oninput="filterServices('hostels')" />
+        <select id="keyword-filter-hostels" onchange="filterServices('hostels')">
+            <option value="">All Keywords</option>
+            <option value="luxury">Luxury</option>
+            <option value="budget">Budget</option>
+            <option value="student">Student</option>
+            <option value="family">Family</option>
+        </select>
+        <select id="sort-filter-hostels" onchange="sortServices('hostels')">
+            <option value="">Sort By</option>
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+        </select>
+    </div>
+    <div class="event-section">
+        <h2>Hostels Services</h2>
+        <div class="event-container" id="hostels-services">
+            <div class="event-card" style="background-image: url('/img/hostel.jpg');">
+                <div class="event-description">Luxury Hostel A <br>Ongoing Service 1 - A brief description. luxury family.</div>
+                <button class="read-more-btn" onclick="openPopup('hostels')">Read More</button>
+            </div>
+            <div class="event-card" style="background-image: url('/img/hostel.jpg');">
+                <div class="event-description">Budget Hostel B <br>Ongoing Service 2 - A brief description. budget student.</div>
+                <button class="read-more-btn" onclick="openPopup('hostels')">Read More</button>
+            </div>
+            <div class="event-card" style="background-image: url('/img/hostel.jpg');">
+                <div class="event-description">Student Hostel C <br>Ongoing Service 3 - A brief description. student.</div>
+                <button class="read-more-btn" onclick="openPopup('hostels')">Read More</button>
+            </div>
         </div>
     </div>
+</div>
 
-    <!-- Tabs Section -->
-    <div class="tabs-container">
-        <div class="tab">Hostels</div>
-        <div class="tab">Cabs</div>
-        <div class="tab">Doctors</div>
-        <div class="tab">Cafes</div>
+<div class="tab-content hidden" id="cabs-content">
+    <div class="event-filters">
+        <input type="text" id="search-bar-cabs" placeholder="Search cabs..." oninput="filterServices('cabs')" />
+        <select id="keyword-filter-cabs" onchange="filterServices('cabs')">
+            <option value="">All Keywords</option>
+            <option value="local">Local</option>
+            <option value="outstation">Outstation</option>
+            <option value="airport">Airport</option>
+            <option value="24/7">24/7</option>
+        </select>
+        <select id="sort-filter-cabs" onchange="sortServices('cabs')">
+            <option value="">Sort By</option>
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+        </select>
     </div>
-
-    <div class="service-section">
-        <h2>Service Category</h2>
-        <div class="service-container">
-            <div class="service-card" style="background-image: url('event.jpg');">
-                <div class="event-logo"><img src="event_logo.png" alt="Event Logo 1"></div>
-                <div class="event-description">CLUB NAME <br>Ongoing Event 1 - A brief description.</div>
-                <button class="read-more-btn">Read More</button>
+    <div class="event-section">
+        <h2>Cabs Services</h2>
+        <div class="event-container" id="cabs-services">
+            <div class="event-card" style="background-image: url('/img/cabs.avif');">
+                <div class="event-description">Local Cabs 1 <br>Ongoing Service 1 - A brief description. local 24/7.</div>
+                <button class="read-more-btn" onclick="openPopup('cabs')">Read More</button>
             </div>
-            <div class="event-card" style="background-image: url('event.jpg');">
-                <div class="event-logo"><img src="event_logo.png" alt="Event Logo 2"></div>
-                <div class="event-description">CLUB NAME <br>Ongoing Event 2 - A brief description.</div>
-                <button class="read-more-btn">Read More</button>
+            <div class="event-card" style="background-image: url('/img/cabs.avif');">
+                <div class="event-description">Outstation Cabs 2 <br>Ongoing Service 2 - A brief description. outstation airport.</div>
+                <button class="read-more-btn" onclick="openPopup('cabs')">Read More</button>
             </div>
-            <div class="event-card" style="background-image: url('event.jpg');">
-                <div class="event-logo"><img src="event_logo.png" alt="Event Logo 3"></div>
-                <div class="event-description">CLUB NAME <br>Ongoing Event 3 - A brief description.</div>
-                <button class="read-more-btn">Read More</button>
+            <div class="event-card" style="background-image: url('/img/cabs.avif');">
+                <div class="event-description">Airport Cabs 3 <br>Ongoing Service 3 - A brief description. airport.</div>
+                <button class="read-more-btn" onclick="openPopup('cabs')">Read More</button>
             </div>
+        </div>
     </div>
+</div>
 
-    <script src="/js/script.js"></script>
+<div class="tab-content hidden" id="doctors-content">
+    <div class="event-filters">
+        <input type="text" id="search-bar-doctors" placeholder="Search doctors..." oninput="filterServices('doctors')" />
+        <select id="keyword-filter-doctors" onchange="filterServices('doctors')">
+            <option value="">All Keywords</option>
+            <option value="cardiologist">Cardiologist</option>
+            <option value="pediatrician">Pediatrician</option>
+            <option value="dermatologist">Dermatologist</option>
+            <option value="orthopedic">Orthopedic</option>
+        </select>
+        <select id="sort-filter-doctors" onchange="sortServices('doctors')">
+            <option value="">Sort By</option>
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+        </select>
+    </div>
+    <div class="event-section">
+        <h2>Doctors Services</h2>
+        <div class="event-container" id="doctors-services">
+            <div class="event-card" style="background-image: url('/img/doctors.jpg');">
+                <div class="event-description">Dr. Smith <br>Ongoing Service 1 - A brief description. cardiologist.</div>
+                <button class="read-more-btn" onclick="openPopup('doctors')">Read More</button>
+            </div>
+            <div class="event-card" style="background-image: url('/img/doctors.jpg');">
+                <div class="event-description">Dr. Johnson <br>Ongoing Service 2 - A brief description. pediatrician.</div>
+                <button class="read-more-btn" onclick="openPopup('doctors')">Read More</button>
+            </div>
+            <div class="event-card" style="background-image: url('/img/doctors.jpg');">
+                <div class="event-description">Dr. Williams <br>Ongoing Service 3 - A brief description. dermatologist.</div>
+                <button class="read-more-btn" onclick="openPopup('doctors')">Read More</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content hidden" id="cafes-content">
+    <div class="event-filters">
+        <input type="text" id="search-bar-cafes" placeholder="Search cafes..." oninput="filterServices('cafes')" />
+        <select id="keyword-filter-cafes" onchange="filterServices('cafes')">
+            <option value="">All Keywords</option>
+            <option value="coffee">Coffee</option>
+            <option value="pastries">Pastries</option>
+            <option value="brunch">Brunch</option>
+            <option value="vegan">Vegan</option>
+        </select>
+        <select id="sort-filter-cafes" onchange="sortServices('cafes')">
+            <option value="">Sort By</option>
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+        </select>
+    </div>
+    <div class="event-section">
+        <h2>Cafes Services</h2>
+        <div class="event-container" id="cafes-services">
+            <div class="event-card" style="background-image: url('/img/CAFE.avif');">
+                <div class="event-description">Cafe Mocha <br>Ongoing Service 1 - A brief description. coffee pastries.</div>
+                <button class="read-more-btn" onclick="openPopup('cafes')">Read More</button>
+            </div>
+            <div class="event-card" style="background-image: url('/img/CAFE.avif');">
+                <div class="event-description">Brunch Spot <br>Ongoing Service 2 - A brief description. brunch vegan.</div>
+                <button class="read-more-btn" onclick="openPopup('cafes')">Read More</button>
+            </div>
+            <div class="event-card" style="background-image: url('/img/CAFE.avif');">
+                <div class="event-description">Vegan Delights <br>Ongoing Service 3 - A brief description. vegan.</div>
+                <button class="read-more-btn" onclick="openPopup('cafes')">Read More</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content hidden" id="deli-content">
+    <div class="event-filters">
+        <input type="text" id="search-bar-deli" placeholder="Search delis..." oninput="filterServices('deli')" />
+        <select id="keyword-filter-deli" onchange="filterServices('deli')">
+            <option value="">All Keywords</option>
+            <option value="Sandwiches">Sandwiches</option>
+            <option value="Salads">Salads</option>
+            <option value="Soups">Soups</option>
+            <option value="Wraps">Wraps</option>
+        </select>
+        <select id="sort-filter-deli" onchange="sortServices('deli')">
+            <option value="">Sort By</option>
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+        </select>
+    </div>
+    <div class="event-section">
+        <h2>Deli Services</h2>
+        <div class="event-container" id="deli-services">
+            <div class="event-card" style="background-image: url('/img/deli.jpg');">
+                <div class="event-description">Deli Name 1 <br>Fresh sandwiches and salads.</div>
+                <button class="read-more-btn" onclick="openPopup('deli')">Read More</button>
+            </div>
+            <div class="event-card" style="background-image: url('/img/deli.jpg');">
+                <div class="event-description">Deli Name 2 <br>Delicious soups and wraps.</div>
+                <button class="read-more-btn" onclick="openPopup('deli')">Read More</button>
+            </div>
+            <div class="event-card" style="background-image: url('/img/deli.jpg');">
+                <div class="event-description">Deli Name 3 <br>Gourmet sandwiches and more.</div>
+                <button class="read-more-btn" onclick="openPopup('deli')">Read More</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="event-popup" class="popup hidden">
+    <div class="popup-content">
+        <button id="close-popup" class="close-btn">&times;</button>
+        <div class="popup-image">
+            <img src="/img/campus-image.jpg" alt="Service Image">
+        </div>
+        <div class="popup-info">
+            <h3>Service Name</h3>
+            <h4>Location</h4>
+            <p>Here is the detailed description of the service. This section will contain all the deep information about the service such as its schedule, features, venue, and more. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, ab officia at, aspernatur id optio expedita minus cupiditate fugiat dolorem velit incidunt! Nulla nihil architecto temporibus similique ullam neque non.</p>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-content">
+        <div class="middle">
+            <p>Made in Response to Minor Project 2</p>
+            <a href="https://github.com/Jahnavi-Anand/College-Community-webApp.git" target="_blank">Click to View GitHub Repository</a>
+        </div>
+        <hr class="footer-line" />
+        <div class="social-icons">
+            <a href="https://www.instagram.com/upes_dehradun/" target="_blank" class="icon-circle">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/UPESddnuk" target="_blank" class="icon-circle">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.youtube.com/user/UPESUniversity/featured" target="_blank" class="icon-circle">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://www.linkedin.com/school/upesdehradun/posts/?feedView=all" target="_blank" class="icon-circle">
+                <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+            <a href="https://x.com/UPESDehradun" target="_blank" class="icon-circle">
+                <i class="fa-brands fa-x-twitter"></i>
+            </a>
+            <a href="https://www.upes.ac.in/" target="_blank" class="icon-circle">
+                <i class="fa-solid fa-link"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+            document.getElementById(`${tabId}-content`).classList.remove('hidden');
+        });
+    });
+
+    function openPopup(tab) {
+        document.getElementById("event-popup").style.display = "flex";
+        document.getElementById("event-popup").classList.remove("hidden");
+    }
+
+    document.getElementById("close-popup").onclick = function() {
+        document.getElementById("event-popup").style.display = "none";
+        document.getElementById("event-popup").classList.add("hidden");
+    }
+
+    function filterServices(tab) {
+        const searchValue = document.getElementById(`search-bar-${tab}`).value.toLowerCase();
+        const keywordValue = document.getElementById(`keyword-filter-${tab}`).value.toLowerCase();
+        const services = document.querySelectorAll(`#${tab}-services .event-card`);
+
+        services.forEach((service) => {
+            const description = service.querySelector(".event-description").textContent.toLowerCase();
+            const matchesSearch = description.includes(searchValue);
+            const matchesKeyword = keywordValue === "" || description.includes(keywordValue);
+
+            if (matchesSearch && matchesKeyword) {
+                service.style.display = "flex";
+            } else {
+                service.style.display = "none";
+            }
+        });
+    }
+
+    function sortServices(tab) {
+        const sortValue = document.getElementById(`sort-filter-${tab}`).value;
+        const container = document.getElementById(`${tab}-services`);
+        const services = Array.from(container.children);
+
+        services.sort((a, b) => {
+            const textA = a.querySelector(".event-description").textContent.trim();
+            const textB = b.querySelector(".event-description").textContent.trim();
+
+            if (sortValue === "a-z") {
+                return textA.localeCompare(textB);
+            } else if (sortValue === "z-a") {
+                return textB.localeCompare(textA);
+            } else if (sortValue === "newest") {
+                return container.children.length - services.indexOf(b);
+            } else if (sortValue === "oldest") {
+                return services.indexOf(a) - services.indexOf(b);
+            }
+            return 0;
+        });
+
+        services.forEach((service) => container.appendChild(service));
+    }
+</script>
 </body>
 </html>
