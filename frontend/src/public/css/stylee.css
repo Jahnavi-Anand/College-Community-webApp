@@ -1,0 +1,324 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(to bottom, #e0f2fc, #b6e3f2); /* Slightly lighter blue */
+    color: black;
+}
+
+/* Header */
+.main-header {
+    width: 100%;
+    max-width: 100vw; /* Prevents overflow */
+    height: 60px; /* Adjust height for better visibility */
+    background-color: #027AA8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Reduced padding */
+    color: white;
+}
+
+.logo img {
+    height: 50px; /* Adjust as needed */
+    padding-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    text-align: center;
+    padding: 220px 20px; /* Increased height */
+    background: url('/img/campus-image.jpg') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    background: rgba(0, 47, 77, 0.6);
+    padding: 120px;
+    color: white;
+}
+
+/* About Section */
+#about {
+    padding: 160px 50px;
+    text-align: center;
+    font-size: 22px;
+    background: url('/img/bg.avif') no-repeat center center;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    color: white;
+}
+
+#about::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 47, 77, 0.6);
+    z-index: 1;
+}
+
+.about-overlay {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.15);
+    padding: 50px;
+    border-radius: 10px;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* Best Places Carousel */
+.carousel-container {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    width: 320px;
+    height: 320px;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease-in-out;
+    margin: 10px;
+}
+
+.carousel-item:hover {
+    transform: scale(1.05);
+}
+
+/* Background images for each card */
+.hostel {
+    background-image: url('/img/hostel.jpg');
+}
+
+.cafe {
+    background-image: url('/img/CAFE.avif');
+}
+
+.doctor {
+    background-image: url('/img/doctors.jpg');
+}
+
+.cabs {
+    background-image: url('/img/cabs.avif');
+}
+
+/* Larger Arrows */
+.prev, .next {
+    font-size: 20px;  /* Increased font size */
+    padding: 9px 15px;
+    background-color: #005f7f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+
+.prev:hover, .next:hover {
+    background-color: #004060;
+}
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #4fa3d1;
+    color: white;
+    font-size: 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    height: 50px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #f1f1f1;
+}
+
+/* Popup Modal */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    background: white;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 1000;
+    text-align: center;
+}
+
+.popup-content {
+    position: relative;
+    padding: 20px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Dark Background Overlay */
+.popup::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+
+
+/* Footer */
+.footer {
+    background-color: #027AA8;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+    margin-top: auto;
+    position: relative;
+}
+
+/* Footer Center Alignment */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.middle p, .middle a {
+    margin: 5px 0;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.footer-line {
+    width: 80%;
+    margin: 15px auto;
+    border: 0.5px solid white;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Social Media Icons */
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.icon-circle:hover {
+    transform: scale(1.1);
+    background-color: #fff5;
+}
+
+.icon-circle i {
+    color: #027AA8;
+    font-size: 20px;
+}
+
+/* Responsive Footer */
+@media screen and (max-width: 768px) {
+    .social-icons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
