@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, "../frontend/src/public")));
 
 // Root route → Redirects to login page
 app.get("/", (req, res) => {
-    res.redirect("/login");
+    res.redirect("/home");
 });
 
 // Route for login/signup page
@@ -31,8 +31,12 @@ app.get("/user", (req, res) => {
     res.render("user_dashboard");
 });
 
+app.get("/home", (req, res) => {
+    res.render("home");
+});
+
 // Start server
 const PORT = 4000;  
 app.listen(PORT, () => {
-    console.log(`🚀 Server running at http://localhost:${PORT}/login`);
+    console.log(`🚀 Server running at http://localhost:${PORT}/home`);
 });
