@@ -263,3 +263,32 @@ header {
 }
 
 /* Social Media Icons */
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.icon-circle:hover {
+    transform: scale(1.1);
+    background-color: #fff5;
+}
+
+.icon-circle i {
+    color: #027AA8;
+    font-size: 20px;
+}
+
+/* Responsive Footer */
+@media screen and (max-width: 768px) {
+    .social-icons {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
