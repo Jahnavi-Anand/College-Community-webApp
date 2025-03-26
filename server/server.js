@@ -39,6 +39,10 @@ app.get("/home", (req, res) => {
     res.render("home");
 });
 
+app.get("/service", (req, res) => {
+    res.render("service");
+});
+
 // Start server
 const PORT = 4000;  
 app.listen(PORT, () => {

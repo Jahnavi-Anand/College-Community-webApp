@@ -159,6 +159,10 @@ nav ul li a:hover {
     background-image: url('/img/cabs.avif');
 }
 
+.deli {
+    background-image: url('/img/deli.jpg');
+}
+
 /* Larger Arrows */
 .prev, .next {
     font-size: 20px;  /* Increased font size */
