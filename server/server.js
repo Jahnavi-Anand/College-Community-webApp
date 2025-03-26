@@ -1,95 +1,209 @@
-const express = require("express");
+const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 const { MongoClient, ServerApiVersion } = require('mongodb');
-const path = require("path"); 
+
 const app = express();
 
-mongoose.connect('mongodb+srv://admin:admin@saarthi.mongodb.net/saarthi?retryWrites=true&w=majority&appName=saarthi', { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('Connected to MongoDB Atlas'))
-  .catch(err => console.error('Error connecting to MongoDB Atlas:', err));
-
-// Middleware to parse JSON & URL-encoded data
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-// Set EJS as the template engine
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "../frontend/src/views"));
-
-// Serve static files (CSS, JS, Images)
-app.use(express.static(path.join(__dirname, "../frontend/src/public")));
-
-// Root route → Redirects to login page
-app.get("/", (req, res) => {
-  res.redirect("/home");
-});
-
-// Route for login/signup page
-app.get("/login", (req, res) => {
-  res.render("login-signup");
-});
-
-app.get("/feedback", (req, res) => {
-  res.render("feedback");
-});
-
-app.get("/user", (req, res) => {
-  res.render("user_dashboard");
-});
-
-app.get("/admin", (req, res) => {
-  res.render("admin_dashboard");
-});
-
-app.get("/home", (req, res) => {
-  res.render("home");
-});
-
-// MongoDB Connection Function
-async function connectDB() {
-  try {
-    client = new MongoClient(uri, {
-      serverApi: {
+// MongoDB Atlas Connection (using MongoClient for initial ping)
+const uri = "mongodb+srv://Admin:admin@saarthi.epqpkle.mongodb.net/?retryWrites=true&w=majority&appName=saarthi";
+const client = new MongoClient(uri, {
+    serverApi: {
         version: ServerApiVersion.v1,
         strict: true,
         deprecationErrors: true,
-      }
-    });
+    }
+});
 
-    await client.connect();
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-    return client;
-  } catch (error) {
-    console.error("Error connecting to MongoDB:", error);
-    throw error;
-  }
+async function run() {
+    try {
+        await client.connect();
+        await client.db("admin").command({ ping: 1 });
+        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+    }
 }
 
-// Function to start the server after DB connection
-async function startServer() {
-  try {
-    await connectDB();
-    const PORT = 4000;
-    app.listen(PORT, () => {
-      console.log(`🚀 Server running at http://localhost:${PORT}/home`);
-    });
+run().catch(console.dir);
 
-    // Example route using the MongoDB client
-    app.get("/data", async (req, res) => {
-      try {
-        const database = client.db("saarthi"); 
-        const collection = database.collection("login"); 
-        const data = await collection.find({}).toArray();
-        res.json(data);
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        res.status(500).json({ error: "Internal server error" });
-      }
-    });
+// Mongoose Connection for data operations
+mongoose.connect("mongodb+srv://Admin:admin@saarthi.epqpkle.mongodb.net/?retryWrites=true&w=majority&appName=saarthi", { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('Connected to MongoDB Atlas (Mongoose)'))
+    .catch(err => console.error('Error connecting to MongoDB Atlas (Mongoose):', err));
 
-  } catch (error) {
-    console.error("Server startup failed:", error);
-  }
-}
+// Import and use body-parser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
 
-startServer(); 
+// Set the view engine to EJS
+app.set('view engine', 'ejs');
+
+// Set the views directory
+app.set('views', path.join(__dirname, 'views'));
+
+// Serve static files from the public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Mongoose Models
+const User = mongoose.model('User', {
+    Username: String,
+    name: String,
+    email: String,
+});
+
+const Password = mongoose.model('Password', {
+    username: String,
+    password: String,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+});
+
+// Review Model
+const Review = mongoose.model('Review', {
+    facility: { type: String, required: true },
+    name: { type: String, required: true },
+    uname: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    rating: { type: Number, required: true, min: 1, max: 5 },
+    experience: { type: String, required: true }
+});
+
+// Service Model
+const Service = mongoose.model('Service', {
+    facility: { type: String, required: true },
+    name: { type: String, required: true },
+    uname: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+    location: { type: String, required: true },
+    description: { type: String, required: true },
+    image: { type: String, required: true } // Assuming image is a URL or file path
+});
+
+// Routes
+app.get("/", (req, res) => {
+    res.redirect("/home");
+});
+
+app.get("/login", (req, res) => {
+    res.render("login-signup");
+});
+
+app.get("/feedback", (req, res) => {
+    res.render("feedback");
+});
+
+app.get("/user", (req, res) => {
+    res.render("user_dashboard");
+});
+
+app.get("/admin", (req, res) => {
+    res.render("admin_dashboard");
+});
+
+app.get("/home", (req, res) => {
+    res.render("home");
+});
+
+app.get("/service", (req, res) => {
+    res.render("service");
+});
+
+// Signup Route
+app.post("/signup", async (req, res) => {
+    try {
+        const { username, name, email, password } = req.body;
+
+        const newUser = new User({
+            Username: username,
+            name: name,
+            email: email,
+        });
+        await newUser.save();
+
+        const newPassword = new Password({
+            username: username,
+            password: password,
+            user: newUser._id
+        });
+        await newPassword.save();
+
+        res.redirect('/login');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Login Route
+app.post("/login", async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        const user = await Password.findOne({ username, password }).populate('user').exec();
+
+        if (user) {
+            res.redirect('/user'); // Redirect to user dashboard on successful login
+        } else {
+            res.redirect('/login'); // Redirect back to login if credentials are invalid
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Add Review Route
+app.post("/addReview", async (req, res) => {
+    try {
+        const { facility, name, username, rating, experience } = req.body;
+
+        const user = await User.findOne({ Username: username });
+        if (!user) {
+            return res.status(400).send('User not found');
+        }
+
+        const newReview = new Review({
+            facility: facility,
+            name: name,
+            uname: user._id,
+            rating: parseInt(rating),
+            experience: experience
+        });
+        await newReview.save();
+
+        res.redirect('/user');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Add Service Route
+app.post("/addService", async (req, res) => {
+    try {
+        const { facility, name, username, location, description, image } = req.body;
+
+        const user = await User.findOne({ Username: username });
+        if (!user) {
+            return res.status(400).send('User not found');
+        }
+
+        const newService = new Service({
+            facility: facility,
+            name: name,
+            uname: user._id,
+            location: location,
+            description: description,
+            image: image
+        });
+        await newService.save();
+
+        res.redirect('/user'); // Or wherever you want to redirect after adding a service
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Listen on port 3000
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running at port ${PORT}`);
+});
