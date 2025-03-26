@@ -31,6 +31,10 @@ app.get("/user", (req, res) => {
     res.render("user_dashboard");
 });
 
+app.get("/admin", (req, res) => {
+    res.render("admin_dashboard");
+});
+
 app.get("/home", (req, res) => {
     res.render("home");
 });
