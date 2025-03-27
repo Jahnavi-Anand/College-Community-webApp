@@ -52,40 +52,31 @@
         </div>
     </section>
 
-    <!-- Best Places Carousel -->
-    <!-- Best Places Carousel -->
-<div class="carousel-container">
-    <button class="prev">&lt;</button>
-    <div class="carousel">
-        <div class="carousel-track">
-            <div class="carousel-item hostel" onclick="openPopup('hostel')">
-                <h3>Best Hostels</h3>
-            </div>
-            <div class="carousel-item cafe" onclick="openPopup('cafe')">
-                <h3>Best Cafes</h3>
-            </div>
-            <div class="carousel-item doctor" onclick="openPopup('doctor')">
-                <h3>Best Doctors</h3>
-            </div>
-            <div class="carousel-item cabs" onclick="openPopup('cabs')">
-                <h3>Cab Services</h3>
-            </div>
-            <div class="carousel-item deli" onclick="openPopup('deli')">
-                <h3>Deli Shops</h3>
+    <div class="carousel-container">
+        <button class="prev">&lt;</button>
+        <div class="carousel">
+            <div class="carousel-track">
+                <a href="/service?tab=hostels" class="carousel-item hostel">
+                    <h3>Best Hostels</h3>
+                </a>
+                <a href="/service?tab=cafes" class="carousel-item cafe">
+                    <h3>Best Cafes</h3>
+                </a>
+                <a href="/service?tab=doctors" class="carousel-item doctor">
+                    <h3>Best Doctors</h3>
+                </a>
+                <a href="/service?tab=cabs" class="carousel-item cabs">
+                    <h3>Cab Services</h3>
+                </a>
+                <a href="/service?tab=deli" class="carousel-item deli">
+                    <h3>Deli Shops</h3>
+                </a>
             </div>
         </div>
+        <button class="next">&gt;</button>
     </div>
-    <button class="next">&gt;</button>
-</div>
 
-<!-- Popup Modal -->
-<div id="popup" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <h2 id="popup-title"></h2>
-        <p id="popup-text"></p>
-    </div>
-</div>
+
 
 <footer class="footer">
     <div class="footer-content">
@@ -118,6 +109,7 @@
 </footer>
 
 <script src="/js/home.js"></script>
+
 
 </body>
 </html>

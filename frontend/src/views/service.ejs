@@ -10,17 +10,21 @@
 </head>
 <body>
 
-<header class="main-header">
-    <nav>
-        <ul>
-            <li><a href="/home">Home</a></li>
-            <li><a href="/service">Service</a></li>
-            <li><a href="/user">UDashboard</a></li>
-            <li><a href="/admin">ADashboard</a></li>
-            <li><a href="/feedback">Review</a></li>
-            <li><a href="/login">Login</a></li>
-        </ul>
-    </nav>
+    <header class="main-header">
+        <div class="logo">
+            <img src="/img/logo.avif" alt="Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/service">Service</a></li>
+                <li><a href="/user">UDashboard</a></li>
+                <li><a href="/admin">ADashboard</a></li>
+                <li><a href="/feedback">Review</a></li>
+                <li><a href="/login">Login</a></li>
+
+            </ul>
+        </nav>        
 </header>
 
 <div class="feedback-banner">
@@ -234,8 +238,49 @@
             <h4>Location</h4>
             <p>Here is the detailed description of the service. This section will contain all the deep information about the service such as its schedule, features, venue, and more. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Blanditiis, ab officia at, aspernatur id optio expedita minus cupiditate fugiat dolorem velit incidunt! Nulla nihil architecto temporibus similique ullam neque non.</p>
         </div>
+
+        <div class="review-content" id="all-reviews">
+            <div class="content">
+                <h1>All Reviews</h1>
+                <ul class="review-list">
+                    <li class="review-item">
+                        <div class="review-block">
+                            <h3>Product X</h3>
+                            <h4>Username</h4>
+                            <p>This product was amazing! I loved the quality and the features. Highly recommended.</p>
+                            <p>Rating: 5/5</p>
+                        </div>
+                    </li>
+                    <li class="review-item">
+                        <div class="review-block">
+                            <h3>Service Y</h3>
+                            <h4>Username</h4>
+                            <p>The service was okay, but I expected a bit more. It took a long time to get a response.</p>
+                            <p>Rating: 3/5</p>
+                        </div>
+                    </li>
+                    <li class="review-item">
+                        <div class="review-block">
+                            <h3>Place Z</h3>
+                            <h4>Username</h4>
+                            <p>Fantastic place! The atmosphere and the staff were excellent. I would definitely visit again.</p>
+                            <p>Rating: 4/5</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="review-content hidden" id="write-review">
+            <div class="content">
+                <h1>Write a Review</h1>
+                <p>Click the button below to write a review:</p>
+                <a href="/feedback" class="write-review-button">Go to Reviews Page</a>
+            </div>
+        </div>
     </div>
 </div>
+
 
 <footer class="footer">
     <div class="footer-content">
@@ -329,6 +374,113 @@
 
         services.forEach((service) => container.appendChild(service));
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const tabParam = urlParams.get('tab');
+
+        if (tabParam) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                if (tab.getAttribute('data-tab') === tabParam) {
+                    tab.classList.add('active');
+                }
+            });
+
+            // Activate the corresponding content
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+            const contentElement = document.getElementById(`${tabParam}-content`);
+            if (contentElement) {
+                contentElement.classList.remove('hidden');
+            }
+        } else {
+            // Activate the first tab and its content as default
+            const defaultTab = document.querySelector('.tab[data-tab="hostels"]');
+            if(defaultTab){
+                defaultTab.classList.add('active');
+                document.getElementById('hostels-content').classList.remove('hidden');
+            }
+        }
+
+        // Existing tab click handling
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+                document.getElementById(`${tabId}-content`).classList.remove('hidden');
+            });
+        });
+
+        // Existing popup functionality
+        function openPopup(tab) {
+            document.getElementById("event-popup").style.display = "flex";
+            document.getElementById("event-popup").classList.remove("hidden");
+        }
+
+        document.getElementById("close-popup").onclick = function() {
+            document.getElementById("event-popup").style.display = "none";
+            document.getElementById("event-popup").classList.add("hidden");
+        }
+
+        // Existing filter functionality
+        function filterServices(tab) {
+            const searchValue = document.getElementById(`search-bar-${tab}`).value.toLowerCase();
+            const keywordValue = document.getElementById(`keyword-filter-${tab}`).value.toLowerCase();
+            const services = document.querySelectorAll(`#${tab}-services .event-card`);
+
+            services.forEach((service) => {
+                const description = service.querySelector(".event-description").textContent.toLowerCase();
+                const matchesSearch = description.includes(searchValue);
+                const matchesKeyword = keywordValue === "" || description.includes(keywordValue);
+
+                if (matchesSearch && matchesKeyword) {
+                    service.style.display = "flex";
+                } else {
+                    service.style.display = "none";
+                }
+            });
+        }
+
+        // Existing sort functionality
+        function sortServices(tab) {
+            const sortValue = document.getElementById(`sort-filter-${tab}`).value;
+            const container = document.getElementById(`${tab}-services`);
+            const services = Array.from(container.children);
+
+            services.sort((a, b) => {
+                const textA = a.querySelector(".event-description").textContent.trim();
+                const textB = b.querySelector(".event-description").textContent.trim();
+
+                if (sortValue === "a-z") {
+                    return textA.localeCompare(textB);
+                } else if (sortValue === "z-a") {
+                    return textB.localeCompare(textA);
+                } else if (sortValue === "newest") {
+                    return container.children.length - services.indexOf(b);
+                } else if (sortValue === "oldest") {
+                    return services.indexOf(a) - services.indexOf(b);
+                }
+                return 0;
+            });
+
+            services.forEach((service) => container.appendChild(service));
+        }
+    });
+
+    document.querySelectorAll('.review-tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabId = this.getAttribute('data-tab');
+            document.querySelectorAll('.review-tab').forEach(t => t.classList.remove('active-review-tab'));
+            this.classList.add('active-review-tab');
+            document.querySelectorAll('.review-content').forEach(content => content.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+        });
+    });
+
+
 </script>
 </body>
 </html>
