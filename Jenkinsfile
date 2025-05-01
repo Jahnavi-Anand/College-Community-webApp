@@ -1,9 +1,13 @@
 pipeline {
     agent any
 
+    agent {
+        label 'windows' 
+    }
+
     environment {
         SONARQUBE_URL = 'http://localhost:9000'
-        SONAR_TOKEN = 'sqp_85e827df52e13dac0be95d226d376880fcecad2a'
+        SONAR_TOKEN = 'sqp_7603ac9f522ae1ac0191707a0a0f10ddea055de7'
     }
 
     stages {
