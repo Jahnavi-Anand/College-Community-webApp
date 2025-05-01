@@ -52,24 +52,15 @@ pipeline {
 }
 
 
-        /*stage('Build Frontend') {
+        stage('Build Frontend') {
             steps {
                 script {
                     dir('frontend') {
-                        bat 'npm run build' // Adjust if needed
+                        bat 'cd server'
+                        bat 'node server.js' 
                     }
                 }
             }
         }
-
-        stage('Start Backend Server') {
-            steps {
-                script {
-                    dir('server') {
-                        bat 'node server.js &'
-                    }
-                }
-            }
-        }*/
     }
 }
