@@ -15,7 +15,7 @@ export class SignupComponent {
   confirmPassword = '';
   passwordMismatch = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private readonly authService : AuthService, private readonly router: Router) {}
 
   onSignup() {
     if (this.password !== this.confirmPassword) {
